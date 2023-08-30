@@ -1,0 +1,4 @@
+o <zero_xyz> sub
+G10 L20 P0 X0 Y0 Z0
+o <zero_xyz> endsub
+M2

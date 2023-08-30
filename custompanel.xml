@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pyvcp>
+<!-- 
+Include your PyVCP panel here.
+The contents of this file will not be overwritten when you run stepconf again.
+-->
+
+<!-- Mist coolant btn -->
+<vbox>
+    <label>
+        <text>"App"</text>
+    </label>
+    <labelframe text="Coolants">
+        <relief>RIDGE</relief>
+        <bd>6</bd>
+        <hbox>
+            <led>
+                <halpin>"mist.is-on"</halpin>
+                <size>40</size>
+                <on_color>"red"</on_color>
+                <off_color>"black"</off_color>
+            </led>
+            <button>
+                <relief>RAISED</relief>
+                <bd>3</bd>
+                <halpin>"mist.toggle"</halpin>
+                <text>"M7 - Mist "</text>
+            </button>
+        </hbox>
+    </labelframe>
+</vbox>
+<!-- Mist coolant btn -->
+<vbox>
+    <label>
+        <text>"Macros"</text>
+    </label>
+    <labelframe text="G-codes">
+        <button>
+            <halpin>"G54_ZERO"</halpin>
+            <text>"XYZ zero"</text>
+            <bd>4</bd>
+            <font>("Monospace", 10, "bold")</font>
+            <activebackground>"medium aquamarine"</activebackground>
+            <padx>7</padx>
+            <pady>7</pady>
+        </button>
+        <button>
+            <halpin>"GO_ZEROS"</halpin>
+            <text>"Go to zeros"</text>
+            <bd>4</bd>
+            <font>("Monospace", 10, "bold")</font>
+            <activebackground>"medium aquamarine"</activebackground>
+            <padx>7</padx>
+            <pady>7</pady>
+        </button>
+        <button>
+            <halpin>"TOOL_PROBE"</halpin>
+            <text>"Probe tool"</text>
+            <bd>4</bd>
+            <font>("Monospace", 10, "bold")</font>
+            <activebackground>"medium aquamarine"</activebackground>
+            <padx>7</padx>
+            <pady>7</pady>
+        </button>
+    </labelframe>
+</vbox>
+
+</pyvcp>

@@ -1,0 +1,42 @@
+(info: Make perimeter)
+o<perim> sub
+
+#<lenghtX>   =  #1 (=40 X size)
+#<lenghtY>   =  #2 (=45 Y size)
+#<depthZ>    =  #3 (=3 depth)
+#<feed>      =  #4 (=380 feed)
+#<freza>     =  #5 (=12 mill diameter)
+#<pripusk>   =  #6 (=0.1 pripusk)
+
+G17 G90 G94 G91.1
+G21
+G92.1
+
+#<compens> = [#<freza> / 2]
+
+G54
+(G10 L20 P0 X0 Y0 Z0)
+
+G91
+G0 Z5
+
+G90
+G0 X-[#<freza>] Y-[#<freza>]
+
+G0 Z0
+
+G1 Z-[#<depthZ>] F100
+
+G1 F[#<feed>]
+
+G1 X-[#<compens> + #<pripusk>] Y-[#<compens> + #<pripusk>]
+G1 Y[#<lenghtY> + #<compens> + #<pripusk>]
+G1 X[#<lenghtX> + #<compens> + #<pripusk>]
+G1 Y[0 - #<compens> - #<pripusk>]
+G1 X[0 - #<compens> - #<pripusk>]
+
+G90
+G0 Z10
+
+o<perim> endsub
+M2
