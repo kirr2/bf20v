@@ -1,7 +1,7 @@
 o<go_zeros> sub
 
 G90
-G53 Z0
+G53 G0 Z0
 
 G0 X0 Y0
 G0 Z10
