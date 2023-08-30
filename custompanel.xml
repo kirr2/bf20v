@@ -20,12 +20,9 @@ The contents of this file will not be overwritten when you run stepconf again.
                 <on_color>"red"</on_color>
                 <off_color>"black"</off_color>
             </led>
-            <button>
-                <relief>RAISED</relief>
-                <bd>3</bd>
-                <halpin>"mist.toggle"</halpin>
-                <text>"M7 - Mist "</text>
-            </button>
+            <label>
+                <text>"Press F7"</text>
+            </label>
         </hbox>
     </labelframe>
 </vbox>
@@ -62,6 +59,25 @@ The contents of this file will not be overwritten when you run stepconf again.
             <padx>7</padx>
             <pady>7</pady>
         </button>
+    </labelframe>
+</vbox>
+
+<vbox>
+    <label>
+        <text>"Status"</text>
+    </label>
+    <labelframe>
+        <hbox>
+            <label>
+                <text>"Tool: "</text>
+            </label>
+            <s32>
+                <halpin>"CUR_TOOL"</halpin>
+                <font>("Helvetica",14)</font>
+                <format>"2d"</format>
+                <width>6</width>
+            </s32>
+        </hbox>
     </labelframe>
 </vbox>
 
