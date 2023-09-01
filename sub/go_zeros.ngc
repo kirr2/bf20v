@@ -1,10 +1,10 @@
 o<go_zeros> sub
 
-G91
-G0 Z10
 G90
+G53 G0 Z0
+
 G0 X0 Y0
-G0 Z0
+G0 Z10
 
 o<go_zeros> endsub
 M2

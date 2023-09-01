@@ -1,2 +1,5 @@
+linuxcnc.var
+tool.tbl
 *.bak
 *.preferences
+auto.ngc

@@ -1,14 +1,8 @@
 # Включайте Ваши custom_postgui HAL-команды здесь
 # Этот файл не будет перезаписан после повторного запуска stepconf
 
-#Mist button (toggle for pyVCP btn)
-loadrt toggle2nist names=toggle.0
-addf toggle.0 servo-thread
-
-net mist-toggle toggle.0.in <= pyvcp.mist.toggle
-net mist-on toggle.0.on => halui.mist.on
-net mist-off toggle.0.off => halui.mist.off
-net mist-led halui.mist.is-on => toggle.0.is-on => pyvcp.mist.is-on
+### Controls
+net mist-led halui.mist.is-on => pyvcp.mist.is-on
 net mist-led halui.mist.is-on => parport.0.pin-17-out
 ###
 
@@ -16,4 +10,8 @@ net mist-led halui.mist.is-on => parport.0.pin-17-out
 net gcode0 halui.mdi-command-00 <= pyvcp.G54_ZERO
 net gcode1 halui.mdi-command-01 <= pyvcp.TOOL_PROBE
 net gcode2 halui.mdi-command-02 <= pyvcp.GO_ZEROS
+###
+
+### Status
+net tool-number => pyvcp.CUR_TOOL
 ###
