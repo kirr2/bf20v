@@ -47,6 +47,9 @@ o101 else
     G1 Y0
 o101 endif
 
+(set Z offset zero)
+G10 L20 P0 Z0
+
 G90
 G0 Z5
 
