@@ -1,0 +1,95 @@
+(info: Make perimeter, conventional milling)
+o<perim_contr> sub
+
+#<lenghtX>   =  #1 (=50 to X size)
+#<lenghtY>   =  #2 (=50 to Y size)
+#<startX>    =  #3 (=80 Start X to size)
+#<startY>    =  #4 (=80 Start Y to size)
+#<offsetX>   =  #5 (=0.3 Offset X start point)
+#<offsetY>   =  #6 (=0.3 Offset Y start point)
+#<depthZ>    =  #7 (=3 depth)
+#<feed>      =  #8 (=500 feed)
+#<step>      =  #9 (=0.3 cut step)
+#<freza>     =  #10 (=12 mill diameter)
+#<pripusk>   =  #11 (=0.1 pripusk size)
+
+G17 G21 G90 G94 G91.1 G92.1
+
+#<radius> = [#<freza> / 2 + #<pripusk>]
+#<sp_X> = [#<radius> + #<offsetX> + [#<startX> - #<lenghtX>]/2]
+#<sp_Y> = [#<radius> + #<offsetY> + [#<startY> - #<lenghtY>]/2]
+
+#<watchdog> = 800 (kill infinity while)
+
+#<shirina_X> = [[#<startX> - #<lenghtX>]/2]
+#<shirina_Y> = [[#<startY> - #<lenghtY>]/2]
+
+G54
+
+G91
+G0 Z5
+
+G90
+(set start position, right bottom)
+G0 X [#<sp_X>] Y -[#<sp_Y>]
+(go to depth)
+G0 Z0
+G1 Z-[#<depthZ>] F200
+(set feedrate)
+G1 F[#<feed>]
+
+(work)
+o100 while [1 EQ 1]
+
+    o170 if [#<watchdog> LE 0]
+        (MSG, Too many cycles, > 800)
+        o100 break
+    o170 endif
+
+    G91
+    G1 Y [#<startY> + #<radius> *2]
+    G1 X -[#<startX> + #<radius> *2]
+    G1 Y -[#<startY> + #<radius> *2]
+    G1 X [#<startX> + #<radius> *2]
+
+    o130 if [#<startX> EQ #<lenghtX>]
+        o140 if [#<startY> EQ #<lenghtY>]
+            o100 break
+        o140 endif
+    o130 endif
+
+    o150 if [#<startY> EQ #<lenghtY>]
+        o160 if [#<startX> EQ #<lenghtX>]
+            o100 break
+        o160 endif
+    o150 endif
+
+    o110 if [#<startY> - #<step> GT #<lenghtY>]
+        #<startY> = [#<startY> - #<step>*2]
+        G1 Y #<step>
+    o110 else
+        #<startY> = #<lenghtY>
+        G90
+        G1 Y -[#<radius> + #<offsetY>]
+        G91
+    o110 endif
+
+    o120 if [#<startX> - #<step> GT #<lenghtX>]
+        #<startX> = [#<startX> - #<step>*2]
+        G1 X-[#<step>]
+    o120 else
+        #<startX> = #<lenghtX>
+        G90
+        G1 X [#<radius> + #<offsetX>]
+        G91
+    o120 endif
+
+#<watchdog> = [#<watchdog> - 1]
+o100 endwhile
+
+(end programm)
+G90
+G0 Z10
+
+o<perim_contr> endsub
+M2
