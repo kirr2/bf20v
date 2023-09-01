@@ -1,19 +1,19 @@
 (info: Make plane)
 o<plane> sub
 
-#<lenghtX>   =  #1 (=10 X size)
-#<lenghtY>   =  #2 (=10 Y size)
-#<depthZ>    =  #3 (=0.5 Depth)
-#<step>      =  #4 (=1.5 step)
-#<feed>      =  #5 (=180 feed)
+#<lenghtX>   =  #1 (=50 X size)
+#<lenghtY>   =  #2 (=50 Y size)
+#<depthZ>    =  #3 (=0.8 Depth)
+#<step>      =  #4 (=1.2 step)
+#<feed>      =  #5 (=680 feed)
 
-G17 G90 G94 G91.1
-G21
-G92.1
+G17 G21 G90 G94 G91.1 G92.1
 
 G54
-(G10 L20 P0 X0 Y0 Z0)
 
+G0 Z10
+G0 X-15 Y-15
+G0 Z0
 G1 Z-[#<depthZ>] F50
 
 G1 F[#<feed>]
@@ -23,7 +23,6 @@ G1 F[#<feed>]
 
 o101 if [#<lenghtX> GE #<lenghtY>]
     #<repeater> = [ #<lenghtY> / #<step> / 2 ]
-    (debug, X >= Y, N= #<repeater>)
     o100 REPEAT [#<repeater>]
         G1 X0
         G1 Y[#<newstep>]
@@ -35,7 +34,6 @@ o101 if [#<lenghtX> GE #<lenghtY>]
     G1 X0
 o101 else
     #<repeater> = [ #<lenghtX> / #<step> / 2 ]
-    (debug, X < Y, N= #<repeater>)
     o102 REPEAT [#<repeater>]
         G1 Y0
         G1 X[#<newstep>]
@@ -47,11 +45,11 @@ o101 else
     G1 Y0
 o101 endif
 
-(set Z offset zero)
 G10 L20 P0 Z0
 
 G90
-G0 Z5
+G0 Z25
+G0 X0 Y0
 
 o<plane> endsub
 M2
