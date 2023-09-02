@@ -5,13 +5,13 @@ o<perim_contr> sub
 #<lenghtY>   =  #2 (=50 to Y size)
 #<startX>    =  #3 (=80 Start X to size)
 #<startY>    =  #4 (=80 Start Y to size)
-#<offsetX>   =  #5 (=0.3 Offset X start point)
-#<offsetY>   =  #6 (=0.3 Offset Y start point)
+#<offsetX>   =  #5 (=0 Offset X start point)
+#<offsetY>   =  #6 (=0 Offset Y start point)
 #<depthZ>    =  #7 (=3 depth)
 #<feed>      =  #8 (=500 feed)
-#<step>      =  #9 (=0.3 cut step)
+#<step>      =  #9 (=0.4 cut step)
 #<freza>     =  #10 (=12 mill diameter)
-#<pripusk>   =  #11 (=0.1 pripusk size)
+#<pripusk>   =  #11 (=0.08 pripusk size)
 
 G17 G21 G90 G94 G91.1 G92.1
 
@@ -36,7 +36,7 @@ G0 X [#<sp_X>] Y -[#<sp_Y>]
 G0 Z0
 G1 Z-[#<depthZ>] F200
 (set feedrate)
-G1 F[#<feed>]
+G1 F #<feed>
 
 (work)
 o100 while [1 EQ 1]
