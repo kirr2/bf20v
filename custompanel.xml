@@ -78,6 +78,28 @@ The contents of this file will not be overwritten when you run stepconf again.
                 <width>6</width>
             </s32>
         </hbox>
+        <hbox>
+            <led>
+                <halpin>"HOME_LED"</halpin>
+                <size>20</size>
+                <on_color>"green"</on_color>
+                <off_color>"black"</off_color>
+            </led>
+            <label>
+                <text>"Home sw"</text>
+            </label>
+        </hbox>
+        <hbox>
+            <led>
+                <halpin>"PROBER_LED"</halpin>
+                <size>20</size>
+                <on_color>"red"</on_color>
+                <off_color>"black"</off_color>
+            </led>
+            <label>
+                <text>"Prober"</text>
+            </label>
+        </hbox>
     </labelframe>
 </vbox>
 

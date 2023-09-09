@@ -14,4 +14,6 @@ net gcode2 halui.mdi-command-02 <= pyvcp.GO_ZEROS
 
 ### Status
 net tool-number => pyvcp.CUR_TOOL
+net all-home => pyvcp.HOME_LED
+net debounce-probe-out => pyvcp.PROBER_LED
 ###
