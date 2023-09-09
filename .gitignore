@@ -1,5 +1,5 @@
-linuxcnc.var
-tool.tbl
 *.bak
 *.preferences
 auto.ngc
+tool.tbl
+linuxcnc.var
