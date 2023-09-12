@@ -96,16 +96,16 @@ net tool-number iocontrol.0.tool-prep-number => hal_manualtoolchange.number
 net tool-prepare-loopback iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
 
 
-loadrt select8 count=1
+#loadrt select8 count=1
+#addf select8.0 base-thread
+#net debounce-probe-in debounce.0.0.in <= parport.0.pin-15-in-not
+#net debounce-probe-out debounce.0.0.out => select8.0.enable
+#net motion-mode motion.motion-type => select8.0.sel
+#net probesel select8.0.out5 => motion.probe-input
+
 loadrt debounce cfg=1
 setp debounce.0.delay 10
 addf debounce.0 base-thread
-addf select8.0 base-thread
 
 net debounce-probe-in debounce.0.0.in <= parport.0.pin-15-in-not
-# Сигнал от датчика подаем на пин вход разрешения select8
-net debounce-probe-out debounce.0.0.out => select8.0.enable
-# Номер режима ведем на вход выбора
-net motion-mode motion.motion-type <= select8.0.sel
-# Выход 5 select8 - ко входу для датчика
-net probesel select8.0.out5 => motion.probe-input
+net debounce-probe-out debounce.0.0.out => motion.probe-input
