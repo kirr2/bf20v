@@ -1,21 +1,15 @@
-(Probe round pocket center start measure x and y Diam, find xy center position)
-(Start probe position is rough center of pocket a safe distance below top edge)
-(no z move will be initiated in this routine. end position is hole center)
-(ensure all settings have been set properly according to help diagrams)
-
+(info: Probe hole from center, search center of this hole)
 o<probe_round_pocket_center_start> sub
 
-  (uses NGCGUI style arg spec)
-  (number after "=" in comment is default value)
-  #<probe_tool_number> = #1    (= #<_ini[TOOLPROBE]PROBE_TOOL_NUMBER>)
-  #<max_xy_distance> = #3      (=5 set diameter of hole)
-  #<xy_clearance> = #4         (= #<_ini[TOOLPROBE]CLEARANCE>)
-  #<probe_slow_fr> = #8        (= #<_ini[TOOLPROBE]SLOW_PROBE_SPEED>)
-  #<probe_fast_fr> = #9        (= #<_ini[TOOLPROBE]PROBE_SPEED>)
-  #<calibration_offset> = #10  (= #<_ini[TOOLPROBE]CALIBR_OFFSET>)
-  #<diameter_hint> = #13       (=1.000 App to max XY distance)
-  #<probe_mode> = #15          (=1 set 0 if need G10 L2)
-  #<max_vel_slider> = #16      (= #<_ini[TOOLPROBE]RAPID_SPEED>)
+  #<probe_tool_number> = #1    (=99 prober tool number)
+  #<max_xy_distance> = #2      (=10 set diameter of hole)
+  #<xy_clearance> = #3         (=0.2 clearance between touch's)
+  #<probe_slow_fr> = #4        (=30 0 if do not slow touch)
+  #<probe_fast_fr> = #5        (=350 mm/min fast touch)
+  #<calibration_offset> = #6  (=0.058 mm offset radius of probe ball)
+  #<diameter_hint> = #7       (=2.0 add to max XY distance)
+  #<probe_mode> = #8          (=1 set 0 if need G10 L2 for X / Y)
+  #<max_vel_slider> = #9      (=250 speed for rapid move to center)
 
   (Cancel G92 offsets)
   G92.1
@@ -36,12 +30,12 @@ o<probe_round_pocket_center_start> sub
   #<probe_diameter_offset> = [#<probe_diameter> - [#<calibration_offset> * 2]]
 
   (Call sub "probe_x_minus" to Probe x-)
-  o<probe_x_minus> call [#<probe_tool_number>][#<max_xy_distance> + #<diameter_hint> / 2][#<xy_clearance>][#<probe_slow_fr>][#<probe_fast_fr>][#<calibration_offset>]
+  o<probe_x_minus> call [#<probe_tool_number>][#<max_xy_distance> + #<diameter_hint> / 2][#<xy_clearance>][0][#<probe_fast_fr>][#<calibration_offset>]
 
   #<x_minus_probed> = #5061
 
   (Call sub "probe_x_plus" to Probe x+)
-  o<probe_x_plus> call [#<probe_tool_number>][#<max_xy_distance> +  #<diameter_hint>][#<xy_clearance>][#<probe_slow_fr>][#<probe_fast_fr>][#<calibration_offset>]
+  o<probe_x_plus> call [#<probe_tool_number>][#<max_xy_distance> +  #<diameter_hint>][#<xy_clearance>][0][#<probe_fast_fr>][#<calibration_offset>]
 
   #<x_plus_probed> = #5061
 
@@ -54,12 +48,12 @@ o<probe_round_pocket_center_start> sub
   G38.3 X[#<x_center_probed>]
 
   (Call sub "probe_y_plus" to Probe Y+)
-  o<probe_y_plus> call [#<probe_tool_number>][#<max_xy_distance> +  #<diameter_hint> / 2][#<xy_clearance>][#<probe_slow_fr>][#<probe_fast_fr>][#<calibration_offset>]
+  o<probe_y_plus> call [#<probe_tool_number>][#<max_xy_distance> +  #<diameter_hint> / 2][#<xy_clearance>][0][#<probe_fast_fr>][#<calibration_offset>]
 
   #<y_plus_probed> = #5062
 
   (Call sub "probe_y_minus" to Probe Y-)
-  o<probe_y_minus> call [#<probe_tool_number>][#<max_xy_distance> +  #<diameter_hint>][#<xy_clearance>][#<probe_slow_fr>][#<probe_fast_fr>][#<calibration_offset>]
+  o<probe_y_minus> call [#<probe_tool_number>][#<max_xy_distance> +  #<diameter_hint>][#<xy_clearance>][0][#<probe_fast_fr>][#<calibration_offset>]
 
   #<y_minus_probed> = #5062
 
@@ -114,6 +108,8 @@ o<probe_round_pocket_center_start> sub
   #<y_probed_width> = [#<raw_width> + #<probe_diameter_offset>]
 
   #<averaged_diam> = [[#<x_probed_width> + #<y_probed_width>] / 2]
+
+  (DEBUG, Probed diameter: #<averaged_diam>)
 
   G90
   F[#<max_vel_slider>]

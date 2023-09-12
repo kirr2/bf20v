@@ -1,19 +1,27 @@
 o<settool> sub
 
-o100 if [#<_task> EQ 0]
-    (debug, Task is null)
-    o<settool> [999]
-o100 endif (this code eliminates tool missing error on load for multiple use tools)
-
 #<tool_num> = #1
 
-o110 if [#<tool_num> EQ #5400]
+o90 if [#<tool_num> EQ 0]
+    T0
+    G49
+    o<settool> return
+o90 endif
+
+o100 if [#5400 EQ #<tool_num>]
     (MSG, Tool already setup)
+    o<settool> return
+o100 endif
+
+o110 if [#<tool_num> EQ 99]
+    (MSG, Set tool heigh offset for prober)
+    T99
+    (G43.2 H99)
     o<settool> return
 o110 endif
 
-T #<tool_num>
+T[#<tool_num>]
 
-o<settool> endsub [1]
+o<settool> endsub
 
 M2

@@ -11,7 +11,7 @@ net gcode0 halui.mdi-command-00 <= pyvcp.G54_ZERO
 net gcode1 halui.mdi-command-01 <= pyvcp.TOOL_PROBE
 net gcode2 halui.mdi-command-02 <= pyvcp.GO_ZEROS
 net gcode3 halui.mdi-command-03 <= pyvcp.RESET_TOOL
-net gcode3 halui.mdi-command-04 <= pyvcp.SET_TOOL_PROBER
+net gcode4 halui.mdi-command-04 <= pyvcp.SET_TOOL_PROBER
 ###
 
 ### Status
