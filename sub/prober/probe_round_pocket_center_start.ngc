@@ -1,0 +1,132 @@
+(Probe round pocket center start measure x and y Diam, find xy center position)
+(Start probe position is rough center of pocket a safe distance below top edge)
+(no z move will be initiated in this routine. end position is hole center)
+(ensure all settings have been set properly according to help diagrams)
+
+o<probe_round_pocket_center_start> sub
+
+  (uses NGCGUI style arg spec)
+  (number after "=" in comment is default value)
+  #<probe_tool_number> = #1    (= #<_ini[TOOLPROBE]PROBE_TOOL_NUMBER>)
+  #<max_xy_distance> = #3      (=5 set diameter of hole)
+  #<xy_clearance> = #4         (= #<_ini[TOOLPROBE]CLEARANCE>)
+  #<probe_slow_fr> = #8        (= #<_ini[TOOLPROBE]SLOW_PROBE_SPEED>)
+  #<probe_fast_fr> = #9        (= #<_ini[TOOLPROBE]PROBE_SPEED>)
+  #<calibration_offset> = #10  (= #<_ini[TOOLPROBE]CALIBR_OFFSET>)
+  #<diameter_hint> = #13       (=1.000 App to max XY distance)
+  #<probe_mode> = #15          (=1 set 0 if need G10 L2)
+  #<max_vel_slider> = #16      (= #<_ini[TOOLPROBE]RAPID_SPEED>)
+
+  (Cancel G92 offsets)
+  G92.1
+
+  #<workspace_x> = #[5201 + [20 * #5220]]
+  #<workspace_y> = #[5202 + [20 * #5220]]
+
+  (Probe Tool Safety Check)
+  o100 if [#5400 NE #<probe_tool_number>]
+      (MSG, Specified probe tool #<probe_tool_number> not in spindle, aborting)
+      o<probe_round_pocket_center_start> return
+  o100 endif
+
+  (Probe Diameter)
+  #<probe_diameter> = #5410
+
+  (remove probe tip diam and cal offset from probed width calculations)
+  #<probe_diameter_offset> = [#<probe_diameter> - [#<calibration_offset> * 2]]
+
+  (Call sub "probe_x_minus" to Probe x-)
+  o<probe_x_minus> call [#<probe_tool_number>][#<max_xy_distance> + #<diameter_hint> / 2][#<xy_clearance>][#<probe_slow_fr>][#<probe_fast_fr>][#<calibration_offset>]
+
+  #<x_minus_probed> = #5061
+
+  (Call sub "probe_x_plus" to Probe x+)
+  o<probe_x_plus> call [#<probe_tool_number>][#<max_xy_distance> +  #<diameter_hint>][#<xy_clearance>][#<probe_slow_fr>][#<probe_fast_fr>][#<calibration_offset>]
+
+  #<x_plus_probed> = #5061
+
+  (probed center calculation)
+  #<x_center_probed> = [[#<x_plus_probed> + #<x_minus_probed>] / 2]
+
+  (Probe Completion Move to X Zero)
+  G90
+  F[#<max_vel_slider>]
+  G38.3 X[#<x_center_probed>]
+
+  (Call sub "probe_y_plus" to Probe Y+)
+  o<probe_y_plus> call [#<probe_tool_number>][#<max_xy_distance> +  #<diameter_hint> / 2][#<xy_clearance>][#<probe_slow_fr>][#<probe_fast_fr>][#<calibration_offset>]
+
+  #<y_plus_probed> = #5062
+
+  (Call sub "probe_y_minus" to Probe Y-)
+  o<probe_y_minus> call [#<probe_tool_number>][#<max_xy_distance> +  #<diameter_hint>][#<xy_clearance>][#<probe_slow_fr>][#<probe_fast_fr>][#<calibration_offset>]
+
+  #<y_minus_probed> = #5062
+
+  (probed center calculation)
+  #<y_center_probed> = [[#<y_plus_probed> + #<y_minus_probed>] / 2]
+
+  (Probe Completion Move to Y Zero)
+  G90
+  F[#<max_vel_slider>]
+  G38.3 Y[#<y_center_probed>]
+
+  (Call sub "probe_x_minus" to Probe x-)
+  o<probe_x_minus> call [#<probe_tool_number>][#<max_xy_distance> +  #<diameter_hint> / 2][#<xy_clearance>][#<probe_slow_fr>][#<probe_fast_fr>][#<calibration_offset>]
+
+  #<x_minus_probed> = #5061
+
+  (Call sub "probe_x_plus" to Probe x+)
+  o<probe_x_plus> call [#<probe_tool_number>][#<max_xy_distance> +  #<diameter_hint>][#<xy_clearance>][#<probe_slow_fr>][#<probe_fast_fr>][#<calibration_offset>]
+
+  #<x_plus_probed> = #5061
+
+  (probed center calculation)
+  #<x_center_probed> = [[#<x_plus_probed> + #<x_minus_probed>] / 2]
+
+  (calculate X Width Probed)
+  #<raw_width> = [#<x_plus_probed> - #<x_minus_probed>]
+
+  (Completed probed width calculations)
+  #<x_probed_width> = [#<raw_width> + #<probe_diameter_offset>]
+
+  G90
+  F[#<max_vel_slider>]
+  G38.3 X[#<x_center_probed>]
+
+  (Call sub "probe_y_plus" to Probe Y+)
+  o<probe_y_plus> call [#<probe_tool_number>][#<max_xy_distance> +  #<diameter_hint> / 2][#<xy_clearance>][#<probe_slow_fr>][#<probe_fast_fr>][#<calibration_offset>]
+
+  #<y_plus_probed> = #5062
+
+  (Call sub "probe_y_minus" to Probe Y-)
+  o<probe_y_minus> call [#<probe_tool_number>][#<max_xy_distance> +  #<diameter_hint>][#<xy_clearance>][#<probe_slow_fr>][#<probe_fast_fr>][#<calibration_offset>]
+
+  #<y_minus_probed> = #5062
+
+  (probed center calculation)
+  #<y_center_probed> = [[#<y_plus_probed> + #<y_minus_probed>] / 2]
+
+  (calculate Y Width Probed)
+  #<raw_width> = [#<y_plus_probed> - #<y_minus_probed>]
+
+  (Completed probed diameter calculations)
+  #<y_probed_width> = [#<raw_width> + #<probe_diameter_offset>]
+
+  #<averaged_diam> = [[#<x_probed_width> + #<y_probed_width>] / 2]
+
+  G90
+  F[#<max_vel_slider>]
+  G38.3 Y[#<y_center_probed>]
+
+  (probe mode rules for WCO or probe position measuring only)
+  o110 if [#<probe_mode> EQ 0]
+      (Record X / Y Zero in selected WCO)
+      G10 L2 P#5220 X[#<x_center_probed> + #<workspace_x>]
+      G10 L2 P#5220 Y[#<y_center_probed> + #<workspace_y>]
+      o<probe_round_pocket_center_start> return
+  o110 endif
+
+o<probe_round_pocket_center_start> endsub
+
+M2 (end program)

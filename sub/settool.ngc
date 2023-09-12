@@ -1,0 +1,19 @@
+o<settool> sub
+
+o100 if [#<_task> EQ 0]
+    (debug, Task is null)
+    o<settool> [999]
+o100 endif (this code eliminates tool missing error on load for multiple use tools)
+
+#<tool_num> = #1
+
+o110 if [#<tool_num> EQ #5400]
+    (MSG, Tool already setup)
+    o<settool> return
+o110 endif
+
+T #<tool_num>
+
+o<settool> endsub [1]
+
+M2

@@ -26,6 +26,7 @@ The contents of this file will not be overwritten when you run stepconf again.
         </hbox>
     </labelframe>
 </vbox>
+
 <!-- Mist coolant btn -->
 <vbox>
     <label>
@@ -100,6 +101,32 @@ The contents of this file will not be overwritten when you run stepconf again.
                 <text>"Prober"</text>
             </label>
         </hbox>
+    </labelframe>
+</vbox>
+
+<vbox>
+    <label>
+        <text>"Tool change"</text>
+    </label>
+    <labelframe text="Tool">
+        <button>
+            <halpin>"RESET_TOOL"</halpin>
+            <text>"RESET TOOL"</text>
+            <bd>4</bd>
+            <font>("Monospace", 10, "bold")</font>
+            <activebackground>"medium aquamarine"</activebackground>
+            <padx>7</padx>
+            <pady>7</pady>
+        </button>
+        <button>
+            <halpin>"SET_TOOL_PROBER"</halpin>
+            <text>"SET PROBER"</text>
+            <bd>4</bd>
+            <font>("Monospace", 10, "bold")</font>
+            <activebackground>"medium aquamarine"</activebackground>
+            <padx>7</padx>
+            <pady>7</pady>
+        </button>
     </labelframe>
 </vbox>
 
