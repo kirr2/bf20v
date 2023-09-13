@@ -1,21 +1,14 @@
-(author: Chris P)
-(version: 0.1)
-(date: 08/13/2023)
-
-(Probe Z Minus direction and set Z 0 in current WCO)
-(Start probe position is over stock within max z distance)
-(ensure all settings have been set properly according to help diagrams)
-
+(info: Probe Z)
 o<probe_z_minus_sub> sub
 
   (uses NGCGUI style arg spec)
   (number after "=" in comment is default value)
-  #<probe_tool_number> = #1
-  #<max_z_distance> = #2
-  #<z_clearance> = #3
-  #<probe_slow_fr> = #4
-  #<probe_fast_fr> = #5
-  #<probe_mode> = #6
+  #<probe_tool_number> = #1 (=99 Prober number tool)
+  #<max_z_distance> = #2    (=15 Max Z- distance)
+  #<z_clearance> = #3       (=5 Z+ safe distance from surface)
+  #<probe_slow_fr> = #4     (=40 Speed for slow probe)
+  #<probe_fast_fr> = #5     (=80 Speed for fast probe)
+  #<probe_mode> = #6        (=0 set 0 for G10 L2)
 
   (Cancel G92 offsets)
   G92.1
