@@ -4,6 +4,7 @@ o<settool> sub
 
 o90 if [#<tool_num> EQ 0]
     T0
+    M6
     G49
     o<settool> return
 o90 endif
@@ -16,11 +17,13 @@ o100 endif
 o110 if [#<tool_num> EQ 99]
     (MSG, Set tool heigh offset for prober)
     T99
-    (G43.2 H99)
+    M6
+    T99 G43 H99
     o<settool> return
 o110 endif
 
 T[#<tool_num>]
+M6
 
 o<settool> endsub
 
