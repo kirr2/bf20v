@@ -27,7 +27,7 @@ The contents of this file will not be overwritten when you run stepconf again.
     </labelframe>
 </vbox>
 
-<!-- Mist coolant btn -->
+<!-- Macroses -->
 <vbox>
     <label>
         <text>"Macros"</text>
@@ -63,6 +63,7 @@ The contents of this file will not be overwritten when you run stepconf again.
     </labelframe>
 </vbox>
 
+<!-- Status -->
 <vbox>
     <label>
         <text>"Status"</text>
@@ -104,6 +105,7 @@ The contents of this file will not be overwritten when you run stepconf again.
     </labelframe>
 </vbox>
 
+<!-- Tools -->
 <vbox>
     <label>
         <text>"Tool change"</text>
@@ -127,6 +129,50 @@ The contents of this file will not be overwritten when you run stepconf again.
             <padx>7</padx>
             <pady>7</pady>
         </button>
+    </labelframe>
+</vbox>
+
+<!-- Prober -->
+<vbox>
+    <labelframe text="Probing edges">
+        <relief>RAISED</relief>
+        <bd>3</bd>
+        <hbox>
+            <button>
+                <font>("Helvetica",20)</font>
+                <width>3</width>
+                <halpin>"Y-plus"</halpin>
+                <text>"Y+"</text>
+            </button>
+        </hbox>
+        <hbox>
+            <button>
+                <font>("Helvetica",20)</font>
+                <width>3</width>
+                <halpin>"X-minus"</halpin>
+                <text>"X-"</text>
+            </button>
+            <button>
+                <font>("Helvetica",20)</font>
+                <width>3</width>
+                <halpin>"Z-minus"</halpin>
+                <text>"Z-"</text>
+            </button>
+            <button>
+                <font>("Helvetica",20)</font>
+                <width>3</width>
+                <halpin>"X-plus"</halpin>
+                <text>"X+"</text>
+            </button>
+        </hbox>
+        <hbox>
+            <button>
+                <font>("Helvetica",20)</font>
+                <width>3</width>
+                <halpin>"Y-minus"</halpin>
+                <text>"Y-"</text>
+            </button>
+        </hbox>
     </labelframe>
 </vbox>
 
