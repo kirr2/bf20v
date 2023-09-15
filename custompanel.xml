@@ -143,6 +143,9 @@ The contents of this file will not be overwritten when you run stepconf again.
                 <width>3</width>
                 <halpin>"Y-plus"</halpin>
                 <text>"Y+"</text>
+                <padx>5</padx>
+                <pady>5</pady>
+                <activebackground>"red"</activebackground>
             </button>
         </hbox>
         <hbox>
@@ -151,18 +154,27 @@ The contents of this file will not be overwritten when you run stepconf again.
                 <width>3</width>
                 <halpin>"X-minus"</halpin>
                 <text>"X-"</text>
+                <padx>5</padx>
+                <pady>5</pady>
+                <activebackground>"yellow"</activebackground>
             </button>
             <button>
                 <font>("Helvetica",20)</font>
                 <width>3</width>
                 <halpin>"Z-minus"</halpin>
                 <text>"Z-"</text>
+                <padx>5</padx>
+                <pady>5</pady>
+                <activebackground>"yellow"</activebackground>
             </button>
             <button>
                 <font>("Helvetica",20)</font>
                 <width>3</width>
                 <halpin>"X-plus"</halpin>
                 <text>"X+"</text>
+                <padx>5</padx>
+                <pady>5</pady>
+                <activebackground>"red"</activebackground>
             </button>
         </hbox>
         <hbox>
@@ -171,6 +183,9 @@ The contents of this file will not be overwritten when you run stepconf again.
                 <width>3</width>
                 <halpin>"Y-minus"</halpin>
                 <text>"Y-"</text>
+                <padx>5</padx>
+                <pady>5</pady>
+                <activebackground>"yellow"</activebackground>
             </button>
         </hbox>
     </labelframe>
