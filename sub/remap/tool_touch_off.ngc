@@ -2,11 +2,12 @@ o<tool_touch_off> sub
 
 o080 if [#5400 EQ 0]
     (MSG, No tool for probe!)
+    T0 M6
+    G49
     o<tool_touch_off> return
 o080 endif
 
 o090 if [#<_selected_tool> EQ 0]
-    (MSG, No tool selected!)
     o<tool_touch_off> return
 o090 endif
 

@@ -3,24 +3,24 @@ o<settool> sub
 #<tool_num> = #1
 
 o90 if [#<tool_num> EQ 0]
-    T0
-    M6
+    T0 M6
     G49
     o<settool> return
 o90 endif
+
+o110 if [#<tool_num> EQ 99]
+    o120 if [#5400 EQ 99]
+        (MSG, Set tool heigh offset for prober)
+        T99 M6
+        G43 H99
+        o<settool> return
+    o120 endif
+o110 endif
 
 o100 if [#5400 EQ #<tool_num>]
     (MSG, Tool already setup)
     o<settool> return
 o100 endif
-
-o110 if [#<tool_num> EQ 99]
-    (MSG, Set tool heigh offset for prober)
-    T99
-    M6
-    T99 G43 H99
-    o<settool> return
-o110 endif
 
 T[#<tool_num>]
 M6

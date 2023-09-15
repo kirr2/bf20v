@@ -116,7 +116,7 @@ The contents of this file will not be overwritten when you run stepconf again.
             <text>"RESET TOOL"</text>
             <bd>4</bd>
             <font>("Monospace", 10, "bold")</font>
-            <activebackground>"medium aquamarine"</activebackground>
+            <activebackground>"red"</activebackground>
             <padx>7</padx>
             <pady>7</pady>
         </button>
@@ -138,6 +138,7 @@ The contents of this file will not be overwritten when you run stepconf again.
         <relief>RAISED</relief>
         <bd>3</bd>
         <hbox>
+            <button><text>"  "</text><padx>24</padx><pady>5</pady></button>
             <button>
                 <font>("Helvetica",20)</font>
                 <width>3</width>
@@ -145,8 +146,10 @@ The contents of this file will not be overwritten when you run stepconf again.
                 <text>"Y+"</text>
                 <padx>5</padx>
                 <pady>5</pady>
+                <justify>CENTER</justify>
                 <activebackground>"red"</activebackground>
             </button>
+            <button><text>"  "</text><padx>24</padx><pady>5</pady></button>
         </hbox>
         <hbox>
             <button>
@@ -178,6 +181,7 @@ The contents of this file will not be overwritten when you run stepconf again.
             </button>
         </hbox>
         <hbox>
+            <button><text>"  "</text><padx>24</padx><pady>5</pady></button>
             <button>
                 <font>("Helvetica",20)</font>
                 <width>3</width>
@@ -185,8 +189,10 @@ The contents of this file will not be overwritten when you run stepconf again.
                 <text>"Y-"</text>
                 <padx>5</padx>
                 <pady>5</pady>
+                <justify>CENTER</justify>
                 <activebackground>"yellow"</activebackground>
             </button>
+            <button><text>"  "</text><padx>24</padx><pady>5</pady></button>
         </hbox>
     </labelframe>
 </vbox>
