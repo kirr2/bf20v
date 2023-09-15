@@ -2,8 +2,6 @@ o <m6probe> sub
 
 o100 if [#<_selected_tool> NE 0]
 
-o110 if [#<_selected_tool> NE #5400]
-
 (debug, Selected tool: #<_selected_tool> Current tool: #5400)
 
 G90
@@ -13,11 +11,6 @@ G53 G0 Z0
 M6
 
 o <tool_touch_off> CALL [250] [15] [60] [1.5] [268.85] [0] [0] [1]
-
-o110 else
-(MSG, Same tool, no change, no probe.)
-o110 endif
-o100 else
 
 o100 endif
 
