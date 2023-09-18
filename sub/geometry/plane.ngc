@@ -9,13 +9,12 @@ o<plane> sub
 
 G17 G21 G90 G94 G91.1 G92.1
 
-o090 if [#5400 NE 0]
+o090 if [#5400 EQ 0]
     (MSG, Tool no select! Exit)
     o<plane> return
 o090 endif
 
 #<tool_dia> = #5410
-#<tool_dia> = 12
 
 #<lenghtX> = [#<lenghtX> + #<tool_dia>]
 #<lenghtY> = [#<lenghtY> + #<tool_dia>]

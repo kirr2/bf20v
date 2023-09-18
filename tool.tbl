@@ -2,6 +2,6 @@ T1   P1   Z+37.584472 ;china - china mill 4 mm
 T2   P2   Z+19.266632 ;china - china mill 6 mm
 T3   P3   ;china - china mill 8 mm
 T4   P4   ;china - china mill 10 mm
-T5   P5   Z+40.901200 ;china - china mill 12 mm
+T5   P5   Z+39.260162 ;china - china mill 12 mm
 T6   P6   D+3.500000 ;china - center driller
-T99  P99  D+2.020000 Z+44.140947 ;prober
+T99  P99  D+2.020000 Z+43.978767 ;prober
