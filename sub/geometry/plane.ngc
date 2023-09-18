@@ -9,39 +9,50 @@ o<plane> sub
 
 G17 G21 G90 G94 G91.1 G92.1
 
+o090 if [#5400 EQ 0]
+    (MSG, Tool no select! Exit)
+    o<plane> return
+o090 endif
+
+#<tool_dia> = #5410
+
+#<lenghtX> = [#<lenghtX> + #<tool_dia>]
+#<lenghtY> = [#<lenghtY> + #<tool_dia>]
+
 G54
 
+G90
 G0 Z10
-G0 X-15 Y-15
+G0 X-[#<tool_dia> + 5] Y-[#<tool_dia> + 5]
 G0 Z0
 G1 Z-[#<depthZ>] F50
+G1 X-[#<tool_dia>/2] Y-[#<tool_dia>/2] F100
 
-G1 F[#<feed>]
+F[#<feed>]
 
 #<repeater> = 0
-#<newstep> = #<step>
+
+G91
 
 o101 if [#<lenghtX> GE #<lenghtY>]
     #<repeater> = [ #<lenghtY> / #<step> / 2 ]
     o100 REPEAT [#<repeater>]
-        G1 X0
-        G1 Y[#<newstep>]
-        #<newstep> = [#<newstep> + #<step>]
         G1 X[#<lenghtX>]
-        G1 Y[#<newstep>]
-        #<newstep> = [#<newstep> + #<step>]
+        G1 Y[#<step>]
+        G1 X-[#<lenghtX>]
+        G1 Y[#<step>]
     o100 ENDREPEAT
+    G90
     G1 X0
 o101 else
     #<repeater> = [ #<lenghtX> / #<step> / 2 ]
     o102 REPEAT [#<repeater>]
-        G1 Y0
-        G1 X[#<newstep>]
-        #<newstep> = [#<newstep> + #<step>]
         G1 Y[#<lenghtY>]
-        G1 X[#<newstep>]
-        #<newstep> = [#<newstep> + #<step>]
+        G1 X[#<step>]
+        G1 Y-[#<lenghtY>]
+        G1 X[#<step>]
     o102 ENDREPEAT
+    G90
     G1 Y0
 o101 endif
 
