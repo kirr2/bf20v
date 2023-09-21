@@ -76,7 +76,7 @@ o<probe_z_minus_wco> sub
 
   (output to gui DRO "Z PROBED POSITION")
   #1009 = #<z_minus_probed_position>
-  (DEBUG, EVAL[vcp.getWidget{"z_minus_probed_position"}.setValue{#1009}])
+  (DEBUG, #1009)
 
   #<z_finish_height> = [#<z_minus_probed> + #<z_clearance>]
 

@@ -40,7 +40,9 @@ o110 if [2 EQ 2]
 o110 endif
 
 G90    (set absolute coordinates)
+
 G53 G0 Z0    (move to z0 home position)
+
 G53 G0 X#<tool_touch_x_coords> Y#<tool_touch_y_coords>
 G53 G0 Z#<tool_touch_z_coords>
 
@@ -48,6 +50,7 @@ G91
 F #<fast_probe_fr>
 G38.2 Z-[#<z_max_travel>]    (fast tool probe)
 G38.5 Z5 F15
+G4 P0.7
 #<z_fast_probe> = [#5063 + #<workspace_z>]     (save probe result of fast probe to parameters)
 G0 Z[#<retract_distance>]    (retract tool retract distance amount)
 
@@ -58,6 +61,7 @@ o120 if [#<slow_probe_fr> GT 0]
     F[#<slow_probe_fr>]    (set probe slow feedrate)
     G38.2 Z-[#<retract_distance> * 3]    (slow tool probe)
     G38.5 Z5 F15
+    G4 P0.5
     #<z_slow_probe> = [#5063 + #<workspace_z>]
     G0 Z[#<retract_distance>]
 o120 endif
