@@ -1,6 +1,8 @@
 # Включайте Ваши custom_postgui HAL-команды здесь
 # Этот файл не будет перезаписан после повторного запуска stepconf
 
+net tool-diam <= halui.tool.diameter
+
 ### Controls
 net mist-led halui.mist.is-on => pyvcp.mist.is-on
 net mist-led halui.mist.is-on => parport.0.pin-17-out
@@ -21,6 +23,7 @@ net prober-zm halui.mdi-command-09 <= pyvcp.Z-minus
 
 ### Status
 net tool-number => pyvcp.CUR_TOOL
+net tool-diam => pyvcp.DIA_TOOL
 net all-home => pyvcp.HOME_LED
 net debounce-probe-out => pyvcp.PROBER_LED
 ###

@@ -95,7 +95,6 @@ net tool-changed iocontrol.0.tool-changed <= hal_manualtoolchange.changed
 net tool-number iocontrol.0.tool-prep-number => hal_manualtoolchange.number
 net tool-prepare-loopback iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
 
-
 #loadrt select8 count=1
 #addf select8.0 base-thread
 #net debounce-probe-in debounce.0.0.in <= parport.0.pin-15-in-not
@@ -104,7 +103,7 @@ net tool-prepare-loopback iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
 #net probesel select8.0.out5 => motion.probe-input
 
 loadrt debounce cfg=1
-setp debounce.0.delay 10
+setp debounce.0.delay 15
 addf debounce.0 base-thread
 
 net debounce-probe-in debounce.0.0.in <= parport.0.pin-15-in-not

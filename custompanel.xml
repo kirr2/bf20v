@@ -81,6 +81,17 @@ The contents of this file will not be overwritten when you run stepconf again.
             </s32>
         </hbox>
         <hbox>
+            <label>
+                <text>"Tool dia: "</text>
+            </label>
+            <number>
+                <halpin>"DIA_TOOL"</halpin>
+                <font>("Helvetica",14)</font>
+                <format>"2.2f"</format>
+                <width>6</width>
+            </number>
+        </hbox>        
+        <hbox>
             <led>
                 <halpin>"HOME_LED"</halpin>
                 <size>20</size>

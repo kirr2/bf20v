@@ -21,12 +21,14 @@ o090 endif
 
 G54
 
+(DEBUG, Tool dia: #<tool_dia>)
+
 G90
 G0 Z10
-G0 X-[#<tool_dia> + 5] Y-[#<tool_dia> + 5]
+G0 X-[#<tool_dia> + #<tool_dia>/2] Y-[#<tool_dia> + #<tool_dia>/2]
 G0 Z0
 G1 Z-[#<depthZ>] F50
-G1 X-[#<tool_dia>/2] Y-[#<tool_dia>/2] F100
+G1 X-[#<tool_dia> / 2] Y-[#<tool_dia> / 2] F100
 
 F[#<feed>]
 
