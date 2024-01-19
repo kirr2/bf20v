@@ -49,9 +49,7 @@ G53 G0 Z#<tool_touch_z_coords>
 G91
 F #<fast_probe_fr>
 G38.2 Z-[#<z_max_travel>]    (fast tool probe)
-G38.5 Z5 F15
-G4 P0.7
-#<z_fast_probe> = [#5063 + #<workspace_z>]     (save probe result of fast probe to parameters)
+G38.5 Z5 F500
 G0 Z[#<retract_distance>]    (retract tool retract distance amount)
 
 (Slow Probe Rule, if Slow Probe FR is set to 0, Slow Probe is Bypassed)
@@ -60,9 +58,8 @@ o120 if [#<slow_probe_fr> GT 0]
     G91
     F[#<slow_probe_fr>]    (set probe slow feedrate)
     G38.2 Z-[#<retract_distance> * 3]    (slow tool probe)
-    G38.5 Z5 F15
-    G4 P0.5
     #<z_slow_probe> = [#5063 + #<workspace_z>]
+    G38.5 Z5 F500
     G0 Z[#<retract_distance>]
 o120 endif
 

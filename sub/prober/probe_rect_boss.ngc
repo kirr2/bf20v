@@ -16,7 +16,7 @@ o<probe_rect_boss> sub
   #<z_clearance> = #11          (=5 clearance Z+ for safe move)
   #<step_off_width> = #12       (=8.00 append width for face probe)
   #<extra_probe_depth> = #13    (=2.00 append Z- depth for face probe)
-  #<max_vel_slider> = #14      (=450 moving to centre after probe)
+  #<max_vel_slider> = #14      (=650 moving to centre after probe)
   #<calibration_offset> = #15  (=0.085 calibration offset)
   #<probe_tool_number> = #16    (=99 prober tool number)
 

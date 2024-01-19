@@ -16,6 +16,11 @@ o090 endif
 
 #<tool_dia> = #5410
 
+o080 if [#<tool_dia> EQ 0]
+    (MSG, Tool dia is 0! Exit)
+    o<plane> return
+o080 endif
+
 #<lenghtX> = [#<lenghtX> + #<tool_dia>]
 #<lenghtY> = [#<lenghtY> + #<tool_dia>]
 

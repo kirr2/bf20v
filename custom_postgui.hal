@@ -25,5 +25,5 @@ net prober-zm halui.mdi-command-09 <= pyvcp.Z-minus
 net tool-number => pyvcp.CUR_TOOL
 net tool-diam => pyvcp.DIA_TOOL
 net all-home => pyvcp.HOME_LED
-net debounce-probe-out => pyvcp.PROBER_LED
+net prober-signal => pyvcp.PROBER_LED
 ###

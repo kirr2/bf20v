@@ -102,9 +102,24 @@ net tool-prepare-loopback iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
 #net motion-mode motion.motion-type => select8.0.sel
 #net probesel select8.0.out5 => motion.probe-input
 
+#net debounce-probe-out debounce.0.0.out => motion.probe-input
+
+loadrt xor2 count=1
+addf xor2.0 base-thread
+
+loadrt or2 count=1
+addf or2.0 base-thread
+
 loadrt debounce cfg=1
-setp debounce.0.delay 15
+setp debounce.0.delay 3
 addf debounce.0 base-thread
 
 net debounce-probe-in debounce.0.0.in <= parport.0.pin-15-in-not
-net debounce-probe-out debounce.0.0.out => motion.probe-input
+
+net debounce-probe-in => xor2.0.in0
+net prober-xor2 xor2.0.in1 <= debounce.0.0.out
+
+net prober-or0 or2.0.in0 <= xor2.0.out
+net prober-xor2 => or2.0.in1
+
+net prober-signal motion.probe-input <= or2.0.out
