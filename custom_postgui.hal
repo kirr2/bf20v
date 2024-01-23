@@ -2,6 +2,7 @@
 # Этот файл не будет перезаписан после повторного запуска stepconf
 
 net tool-diam <= halui.tool.diameter
+net tool-len <= halui.tool.length_offset.z
 
 ### Controls
 net mist-led halui.mist.is-on => pyvcp.mist.is-on
@@ -9,9 +10,9 @@ net mist-led halui.mist.is-on => parport.0.pin-17-out
 ###
 
 ### Macros MDI
-net gcode0 halui.mdi-command-00 <= pyvcp.G54_ZERO
-net gcode1 halui.mdi-command-01 <= pyvcp.TOOL_PROBE
-net gcode2 halui.mdi-command-02 <= pyvcp.GO_ZEROS
+net gcode0 halui.mdi-command-00 ### <= pyvcp.G54_ZERO
+net gcode1 halui.mdi-command-01 ### <= pyvcp.TOOL_PROBE
+net gcode2 halui.mdi-command-02 ### <= pyvcp.GO_ZEROS
 net gcode3 halui.mdi-command-03 <= pyvcp.RESET_TOOL
 net gcode4 halui.mdi-command-04 <= pyvcp.SET_TOOL_PROBER
 net prober-xm halui.mdi-command-05 <= pyvcp.X-minus
@@ -24,6 +25,7 @@ net prober-zm halui.mdi-command-09 <= pyvcp.Z-minus
 ### Status
 net tool-number => pyvcp.CUR_TOOL
 net tool-diam => pyvcp.DIA_TOOL
+net tool-len => pyvcp.LEN_TOOL
 net all-home => pyvcp.HOME_LED
 net prober-signal => pyvcp.PROBER_LED
 ###

@@ -21,14 +21,14 @@ The contents of this file will not be overwritten when you run stepconf again.
                 <off_color>"black"</off_color>
             </led>
             <label>
-                <text>"Press F7"</text>
+                <text>" Press F7"</text>
             </label>
         </hbox>
     </labelframe>
 </vbox>
 
 <!-- Macroses -->
-<vbox>
+<!--<vbox>
     <label>
         <text>"Macros"</text>
     </label>
@@ -51,17 +51,8 @@ The contents of this file will not be overwritten when you run stepconf again.
             <padx>7</padx>
             <pady>7</pady>
         </button>
-        <button>
-            <halpin>"TOOL_PROBE"</halpin>
-            <text>"Probe tool"</text>
-            <bd>4</bd>
-            <font>("Monospace", 10, "bold")</font>
-            <activebackground>"medium aquamarine"</activebackground>
-            <padx>7</padx>
-            <pady>7</pady>
-        </button>
     </labelframe>
-</vbox>
+</vbox>-->
 
 <!-- Status -->
 <vbox>
@@ -90,7 +81,18 @@ The contents of this file will not be overwritten when you run stepconf again.
                 <format>"2.2f"</format>
                 <width>6</width>
             </number>
-        </hbox>        
+        </hbox>
+        <hbox>
+            <label>
+                <text>"Tool len: "</text>
+            </label>
+            <number>
+                <halpin>"LEN_TOOL"</halpin>
+                <font>("Helvetica",14)</font>
+                <format>"2.2f"</format>
+                <width>6</width>
+            </number>
+        </hbox>
         <hbox>
             <led>
                 <halpin>"HOME_LED"</halpin>
@@ -121,6 +123,30 @@ The contents of this file will not be overwritten when you run stepconf again.
     <label>
         <text>"Tool change"</text>
     </label>
+    <labelframe text="Options">
+    <hbox>
+        <checkbutton>
+            <halpin>"ignore-m6-box"</halpin>
+            <text>"Ignore M6"</text>
+            <initval>0</initval>
+        </checkbutton>
+    </hbox>
+    <!--<hbox>
+        <checkbutton>
+            <halpin>"reprobe-box"</halpin>
+            <text>"Reprobe M6"</text>
+            <initval>0</initval>
+        </checkbutton>
+        
+    </hbox>-->
+    <hbox>
+        <checkbutton>
+            <halpin>"enable-mist-probe"</halpin>
+            <text>"Mist on probing"</text>
+            <initval>1</initval>
+        </checkbutton>
+    </hbox>
+    </labelframe>
     <labelframe text="Tool">
         <button>
             <halpin>"RESET_TOOL"</halpin>
@@ -131,6 +157,15 @@ The contents of this file will not be overwritten when you run stepconf again.
             <padx>7</padx>
             <pady>7</pady>
         </button>
+        <!--<button>
+            <halpin>"TOOL_PROBE"</halpin>
+            <text>"PROBE TOOL"</text>
+            <bd>4</bd>
+            <font>("Monospace", 10, "bold")</font>
+            <activebackground>"medium aquamarine"</activebackground>
+            <padx>7</padx>
+            <pady>7</pady>
+        </button>-->
         <button>
             <halpin>"SET_TOOL_PROBER"</halpin>
             <text>"SET PROBER"</text>
