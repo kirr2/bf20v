@@ -98,9 +98,9 @@ o131 endwhile
 
 o130 endif
 
-o132 if [#5070 NE 1]
+o133 if [#5070 NE 1]
 o<tool_touch_off> return
-o132 endif
+o133 endif
 
 (Tool Diameter Probe Mode Section, User must define this section as needed)
 o140 if [#<tool_diameter_probe_mode> EQ 1]
