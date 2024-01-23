@@ -21,14 +21,14 @@ The contents of this file will not be overwritten when you run stepconf again.
                 <off_color>"black"</off_color>
             </led>
             <label>
-                <text>"Press F7"</text>
+                <text>" Press F7"</text>
             </label>
         </hbox>
     </labelframe>
 </vbox>
 
 <!-- Macroses -->
-<vbox>
+<!--<vbox>
     <label>
         <text>"Macros"</text>
     </label>
@@ -51,17 +51,8 @@ The contents of this file will not be overwritten when you run stepconf again.
             <padx>7</padx>
             <pady>7</pady>
         </button>
-        <button>
-            <halpin>"TOOL_PROBE"</halpin>
-            <text>"Probe tool"</text>
-            <bd>4</bd>
-            <font>("Monospace", 10, "bold")</font>
-            <activebackground>"medium aquamarine"</activebackground>
-            <padx>7</padx>
-            <pady>7</pady>
-        </button>
     </labelframe>
-</vbox>
+</vbox>-->
 
 <!-- Status -->
 <vbox>
@@ -75,12 +66,12 @@ The contents of this file will not be overwritten when you run stepconf again.
             </label>
             <s32>
                 <halpin>"CUR_TOOL"</halpin>
-                <font>("Helvetica",14)</font>
+                <font>("Helvetica",18)</font>
                 <format>"2d"</format>
                 <width>6</width>
             </s32>
         </hbox>
-        <hbox>
+        <!--<hbox>
             <label>
                 <text>"Tool dia: "</text>
             </label>
@@ -90,7 +81,93 @@ The contents of this file will not be overwritten when you run stepconf again.
                 <format>"2.2f"</format>
                 <width>6</width>
             </number>
-        </hbox>        
+        </hbox>
+        <hbox>
+            <label>
+                <text>"Tool len: "</text>
+            </label>
+            <number>
+                <halpin>"LEN_TOOL"</halpin>
+                <font>("Helvetica",14)</font>
+                <format>"2.2f"</format>
+                <width>6</width>
+            </number>
+        </hbox>-->
+        <hbox>
+            <labelframe text="Diameter G41/42">
+						<hbox>
+							<number>
+								<halpin>"current-tool-diameter"</halpin>
+								<font>("Helvetica",24)</font>
+								<format>"2.2f"</format>
+								<width>6</width>
+							</number>
+							<label>
+								<text>"+"</text>
+								<font>("Helvetica",20)</font>
+							</label>
+							<spinbox>
+								<halpin>"diameter-input"</halpin>
+								<min_>-1</min_>
+								<max_>1</max_>
+								<initval>0</initval>
+								<resolution>0.01</resolution>
+								<format>"2.2f"</format>
+								<font>("Helvetica",16)</font>
+								<param_pin>1</param_pin>
+								<width>6</width>
+							</spinbox>
+						</hbox>
+						<button>
+							<relief>RAISED</relief>
+							<bd>3</bd>
+							<halpin>"change-diameter-button"</halpin>
+							<text>"Change diameter"</text>
+						</button>
+			</labelframe>
+        </hbox>
+        <hbox>
+        <labelframe text="Length G43">
+						<hbox>
+							<number>
+								<halpin>"current-tool-length"</halpin>
+								<font>("Helvetica",24)</font>
+								<format>"2.2f"</format>
+								<width>6</width>
+							</number>
+							<label>
+								<text>"+"</text>
+								<font>("Helvetica",20)</font>
+							</label>
+							<spinbox>
+								<halpin>"length-input"</halpin>
+								<min_>-100</min_>
+								<max_>100</max_>
+								<initval>0</initval>
+								<resolution>0.01</resolution>
+								<format>"2.2f"</format>
+								<font>("Helvetica",16)</font>
+								<param_pin>1</param_pin>
+								<width>6</width>
+							</spinbox>
+						</hbox>
+                        <button>
+								<relief>RAISED</relief>
+								<bd>3</bd>
+								<halpin>"change-length-button"</halpin>
+								<text>"Change length"</text>
+						</button>
+						<!--<hbox>
+							
+							<button>
+								<relief>RAISED</relief>
+								<bd>3</bd>
+								<halpin>"enable-g431-button"</halpin>
+								<text>"Enable G43.1"</text>
+							</button>
+						</hbox>-->
+					</labelframe>
+        </hbox>
         <hbox>
             <led>
                 <halpin>"HOME_LED"</halpin>
@@ -121,6 +198,30 @@ The contents of this file will not be overwritten when you run stepconf again.
     <label>
         <text>"Tool change"</text>
     </label>
+    <labelframe text="Options">
+    <hbox>
+        <checkbutton>
+            <halpin>"ignore-m6-box"</halpin>
+            <text>"Ignore M6"</text>
+            <initval>0</initval>
+        </checkbutton>
+    </hbox>
+    <!--<hbox>
+        <checkbutton>
+            <halpin>"reprobe-box"</halpin>
+            <text>"Reprobe M6"</text>
+            <initval>0</initval>
+        </checkbutton>
+        
+    </hbox>-->
+    <hbox>
+        <checkbutton>
+            <halpin>"enable-mist-probe"</halpin>
+            <text>"Mist on probing"</text>
+            <initval>1</initval>
+        </checkbutton>
+    </hbox>
+    </labelframe>
     <labelframe text="Tool">
         <button>
             <halpin>"RESET_TOOL"</halpin>
@@ -131,6 +232,15 @@ The contents of this file will not be overwritten when you run stepconf again.
             <padx>7</padx>
             <pady>7</pady>
         </button>
+        <!--<button>
+            <halpin>"TOOL_PROBE"</halpin>
+            <text>"PROBE TOOL"</text>
+            <bd>4</bd>
+            <font>("Monospace", 10, "bold")</font>
+            <activebackground>"medium aquamarine"</activebackground>
+            <padx>7</padx>
+            <pady>7</pady>
+        </button>-->
         <button>
             <halpin>"SET_TOOL_PROBER"</halpin>
             <text>"SET PROBER"</text>

@@ -1,0 +1,39 @@
+o<apply-cutter-compensation> sub
+
+o100 if [#<_hal[iocontrol.0.tool-number]> LT 1] (tool number check)
+(debug, Tool not laded !)
+o<apply-cutter-compensation> return
+o100 endif
+
+
+
+O101 if [#1 EQ 1] (change tool diameter compensation)
+	G10 L1 P#<_hal[iocontrol.0.tool-number]>  R[[#<_hal[halui.tool.diameter]> + #<_hal[pyvcp.diameter-input]>] /2 ]
+	/(debug, Tool diameter has been changed.)
+
+
+
+O101 elseif [#1 EQ 2] (change tool lenght compensation)
+	O102 if [#<_tool_offset> EQ 0]
+  	/(debug,  G43 is not enabled)
+	o<apply-cutter-compensation> return
+	O102 endif
+
+	G10 L1 P#<_hal[iocontrol.0.tool-number]>  Z[#<_hal[halui.tool.length_offset.z]> + #<_hal[pyvcp.length-input]> ]
+	G43
+	/(debug, Tool length has been changed.)
+
+
+
+O101 elseif [#1 EQ 3] (enable g43.1 tool lenght compensation)
+	G43.1  Z[#<_hal[halui.tool.length_offset.z]> + #<_hal[pyvcp.length-input]> ]
+	/(debug, G43.1 length enabled.)
+
+
+
+O101 endif
+
+
+
+o<apply-cutter-compensation> endsub
+m2

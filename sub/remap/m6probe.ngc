@@ -1,5 +1,10 @@
 o <m6probe> sub
 
+o090 if [#<_hal[pyvcp.ignore-m6-box]> NE 0]
+(debug, Ignore M6 checkbox! Next step...)
+o <m6probe> return
+o090 endif
+
 o100 if [#<_selected_tool> NE 0]
 
 (debug, Selected tool: #<_selected_tool> Current tool: #5400)
@@ -10,8 +15,10 @@ G53 G0 Z0
 
 M6
 
-o <tool_touch_off> CALL [250] [15] [60] [1.5] [275.32] [0] [0] [1]
+o <tool_touch_off> CALL [250] [15] [80] [1.5] [275.32] [0] [0] [1]
 
+o100 else
+T0 M6
 o100 endif
 
 o <m6probe> endsub

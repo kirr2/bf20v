@@ -9,6 +9,11 @@ o90 if [#<tool_num> EQ 0]
 o90 endif
 
 o110 if [#<tool_num> EQ 99]
+    o115 if [#5400 NE 0]
+    (MSG, Reset tool before set prober!)
+    (debug, #5400 tool set)
+    o<settool> return
+    o115 endif
     o120 if [#5400 EQ 99]
         (MSG, Set tool heigh offset for prober)
         T99 M6
