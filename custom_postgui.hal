@@ -24,8 +24,11 @@ net prober-zm halui.mdi-command-09 <= pyvcp.Z-minus
 
 ### Status
 net tool-number => pyvcp.CUR_TOOL
-net tool-diam => pyvcp.DIA_TOOL
-net tool-len => pyvcp.LEN_TOOL
+net tool-diam => pyvcp.current-tool-diameter ## => pyvcp.DIA_TOOL
+net tool-len => pyvcp.current-tool-length ## => pyvcp.LEN_TOOL
 net all-home => pyvcp.HOME_LED
 net prober-signal => pyvcp.PROBER_LED
 ###
+
+	net change-diameter-btn	pyvcp.change-diameter-button	=> halui.mdi-command-10
+	net change-length-btn 	pyvcp.change-length-button		=> halui.mdi-command-11
