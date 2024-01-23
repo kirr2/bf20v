@@ -23,7 +23,9 @@ O101 elseif [#1 EQ 2] (change tool lenght compensation)
 	G43
 	/(debug, Tool length has been changed.)
 
-
+	G91
+	G0 Z [#<_hal[pyvcp.length-input]>]
+	G90
 
 O101 elseif [#1 EQ 3] (enable g43.1 tool lenght compensation)
 	G43.1  Z[#<_hal[halui.tool.length_offset.z]> + #<_hal[pyvcp.length-input]> ]
