@@ -7,7 +7,13 @@ o090 endif
 
 o100 if [#<_selected_tool> NE 0]
 
-(debug, Selected tool: #<_selected_tool> Current tool: #5400)
+/(debug, Selected tool: #<_selected_tool> Current tool: #5400)
+
+o091 if [#<_selected_tool> EQ 88]
+T88 M6
+G43 H88
+o <m6probe> return
+o091 endif
 
 G90
 G49
