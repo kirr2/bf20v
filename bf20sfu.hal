@@ -4,11 +4,13 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]BASE_PERIOD servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hal_parport cfg="0x378 out"
+setp parport.0.reset-time 2500
 loadrt stepgen step_type=0,0,0,0
 
 addf parport.0.read base-thread
 addf stepgen.make-pulses base-thread
 addf parport.0.write base-thread
+addf parport.0.reset base-thread
 
 addf stepgen.capture-position servo-thread
 addf motion-command-handler servo-thread
@@ -39,10 +41,10 @@ net all-home        => joint.1.home-sw-in
 net all-home        => joint.2.home-sw-in
 
 setp stepgen.0.position-scale [JOINT_0]SCALE
-setp stepgen.0.steplen 1
-setp stepgen.0.stepspace 1
-setp stepgen.0.dirhold 70000
-setp stepgen.0.dirsetup 70000
+setp stepgen.0.steplen 2500
+setp stepgen.0.stepspace 2500
+setp stepgen.0.dirhold 10000
+setp stepgen.0.dirsetup 5000
 setp stepgen.0.maxaccel [JOINT_0]STEPGEN_MAXACCEL
 net xpos-cmd joint.0.motor-pos-cmd => stepgen.0.position-cmd
 net xpos-fb stepgen.0.position-fb => joint.0.motor-pos-fb
@@ -51,10 +53,10 @@ net xdir <= stepgen.0.dir
 net xenable joint.0.amp-enable-out => stepgen.0.enable
 
 setp stepgen.1.position-scale [JOINT_1]SCALE
-setp stepgen.1.steplen 1
-setp stepgen.1.stepspace 1
-setp stepgen.1.dirhold 70000
-setp stepgen.1.dirsetup 70000
+setp stepgen.1.steplen 2500
+setp stepgen.1.stepspace 2500
+setp stepgen.1.dirhold 10000
+setp stepgen.1.dirsetup 5000
 setp stepgen.1.maxaccel [JOINT_1]STEPGEN_MAXACCEL
 net ypos-cmd joint.1.motor-pos-cmd => stepgen.1.position-cmd
 net ypos-fb stepgen.1.position-fb => joint.1.motor-pos-fb
@@ -63,10 +65,10 @@ net ydir <= stepgen.1.dir
 net yenable joint.1.amp-enable-out => stepgen.1.enable
 
 setp stepgen.2.position-scale [JOINT_2]SCALE
-setp stepgen.2.steplen 1
-setp stepgen.2.stepspace 1
-setp stepgen.2.dirhold 70000
-setp stepgen.2.dirsetup 70000
+setp stepgen.2.steplen 2500
+setp stepgen.2.stepspace 2500
+setp stepgen.2.dirhold 10000
+setp stepgen.2.dirsetup 5000
 setp stepgen.2.maxaccel [JOINT_2]STEPGEN_MAXACCEL
 net zpos-cmd joint.2.motor-pos-cmd => stepgen.2.position-cmd
 net zpos-fb stepgen.2.position-fb => joint.2.motor-pos-fb
@@ -75,10 +77,10 @@ net zdir <= stepgen.2.dir
 net zenable joint.2.amp-enable-out => stepgen.2.enable
 
 setp stepgen.3.position-scale [JOINT_3]SCALE
-setp stepgen.3.steplen 1
-setp stepgen.3.stepspace 1
-setp stepgen.3.dirhold 70000
-setp stepgen.3.dirsetup 70000
+setp stepgen.3.steplen 5050
+setp stepgen.3.stepspace 5050
+setp stepgen.3.dirhold 500
+setp stepgen.3.dirsetup 500
 setp stepgen.3.maxaccel [JOINT_3]STEPGEN_MAXACCEL
 net apos-cmd joint.3.motor-pos-cmd => stepgen.3.position-cmd
 net apos-fb stepgen.3.position-fb => joint.3.motor-pos-fb
