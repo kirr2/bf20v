@@ -116,7 +116,7 @@ loadrt debounce cfg=1
 setp debounce.0.delay 3
 addf debounce.0 base-thread
 
-net debounce-probe-in debounce.0.0.in <= parport.0.pin-15-in-not
+net debounce-probe-in debounce.0.0.in <= parport.0.pin-15-in
 
 net debounce-probe-in => xor2.0.in0
 net prober-xor2 xor2.0.in1 <= debounce.0.0.out

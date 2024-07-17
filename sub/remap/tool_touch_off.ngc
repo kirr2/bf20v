@@ -55,7 +55,7 @@ o111 endif
 G91
 F #<fast_probe_fr>
 G38.2 Z-[#<z_max_travel>]    (fast tool probe)
-G38.5 Z5 F500
+G38.5 Z5 F[#<z_max_travel> / 2]
 G0 Z[#<retract_distance>]    (retract tool retract distance amount)
 
 o112 if [#<_hal[pyvcp.enable-mist-probe]> NE 1]
@@ -67,10 +67,10 @@ o120 if [#<slow_probe_fr> GT 0]
     (Initiate Slow Z- Probe)
     G91
     F[#<slow_probe_fr>]    (set probe slow feedrate)
-    G38.3 Z-[#<retract_distance> * 3]    (slow tool probe)
+    G38.3 Z-[#<retract_distance> * 2]    (slow tool probe)
     #<z_slow_probe> = [#5063 + #<workspace_z>]
-    G38.5 Z5 F500
-    G0 Z[#<retract_distance>]
+    G38.5 Z5 F[#<z_max_travel> / 2]
+    G0 Z[#<retract_distance> * 2]
 o120 endif
 
 M9
@@ -82,7 +82,7 @@ o130 else
 o131 while [#<tryes_probe> LT 3]
     M7
     G91
-    G38.5 Z5 F500
+    G38.5 Z5 F[#<z_max_travel> / 2]
     G0 Z[#<retract_distance>]
     M9
     F[#<slow_probe_fr>]    (set probe slow feedrate)
